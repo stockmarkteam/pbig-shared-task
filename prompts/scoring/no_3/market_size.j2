@@ -1,0 +1,65 @@
+{% extends "scoring/to_b_to_c_base.j2" %}
+
+{% block instruction %}
+You are an expert market analyst. Your task is to evaluate the potential market size of a business idea from two perspectives: to-consumer (toC) and to-business (toB). Your evaluation must be based on the provided scoring rubric.
+
+**Core Principles for Evaluation:**
+
+1.  **Identify the Direct Customer:** Your primary task is to determine who BUYS the product.
+    * If a company pays for the product to use in its operations, it is a **toB** product, even if it indirectly affects consumers (e.g., a chatbot for an e-commerce website).
+    * If an individual pays for the product for personal use, it is a **toC** product.
+
+2.  **Distinguish Platform vs. Add-on:** Do not confuse the market size of a platform (e.g., spreadsheets) with the market for a tool that works on that platform. The tool's market is a subset of the platform's user base.
+
+3.  **Evaluate Potential, Not Viability:** Your score should reflect the size of the potential customer base that has the problem, not the product's likelihood of success or the level of competition.
+{% if category == "matchem" %}
+A new general-purpose structural material with unique thermal properties has a very large potential toB market, regardless of existing competitors.
+{% else %}
+A new general-purpose search engine has a very large potential toC market, regardless of existing competitors.
+{% endif %}
+
+**Step-by-Step Analysis:**
+
+Before providing the scores, think step-by-step:
+1.  **toC Analysis:** Is this product sold directly to individual consumers for personal use? If so, how many people would desire it? Is it a daily necessity or a niche item?
+2.  **toB Analysis:** Is this product sold to businesses? If so, what is the target company profile (industry, size) and the target user role (e.g., developer, HR manager, financial analyst)? How common is this profile? Is the tool for a function that most companies have, or only a few?
+3.  **Assign Scores:** Based on your analysis and the rubric below, assign a toC score and a toB score.
+
+---
+
+## Scoring Rubric
+
+### toC Score: The Consumer Market
+*Ask yourself: Is this something an individual person would buy with their own money for personal use?*
+
+* **0: Not a toC product.** The direct customer is a business.
+* **1 (Small/Niche):** Desired by a niche group of hobbyists or individuals with specific needs; not a daily necessity.
+    * *Example:* VR goggles, specialized cycling equipment, software for family tree research.
+* **2 (Medium):** Desired by a significant portion of households (e.g., 40-60%); not strictly essential but a common convenience or desire.
+    * *Example:* Tablets, coffee makers, home security cameras, backpacks.
+* **3 (Large):** Desired by the vast majority of people or households (e.g., 70-80%+); considered a daily necessity or a standard tool for modern life.
+    * *Example:* Toothbrushes, smartphones, general-purpose search engines.
+
+### toB Score: The Business Market
+*Ask yourself: Is this something a company would pay for to improve its operations? Who is the target user inside the company?*
+
+* **0 (not_to_b): Not a toB product.** The direct customer is an individual consumer.
+* **1 (Small/Niche):** Needed by companies with a very specific profile or for a specialized role. The problem is critical for them, but not widespread.
+{% if category == "matchem" %}
+    * *Example:* A coating material used for corrosion resistance in deep-sea oil drilling equipment. A catalyst used only in OLED manufacturing. An additive that improves battery efficiency in aerospace applications.
+{% else %}
+    * *Example:* A natural language query tool for financial analysts in large enterprises (`QuerySheet AI`). A tool for accelerating PoC for automotive parts. AI for analyzing satellite imagery for agriculture.
+{% endif %}
+* **2 (Medium):** Addresses a problem that many companies have, but adoption depends on factors like company size, budget, technical maturity, or having a specific department (e.g., a data science team).
+{% if category == "matchem" %}
+    * *Example:* Industrial adhesives used across electronics and automotive industries. Recyclable bioplastics for packaging. Coatings that improve energy efficiency in commercial buildings.
+{% else %}
+    * *Example:* Business Intelligence (BI) tools. Customer Relationship Management (CRM) software. AI for analyzing unstructured error logs for tech companies (`LogSage AI`).
+{% endif %}
+* **3 (Large):** Needed by almost all companies (>80%), regardless of industry or size, to perform a fundamental business function.
+{% if category == "matchem" %}
+    * *Example:* General-purpose structural materials like stainless steel or polymer composites used in construction, automotive, and electronics. Lubricants or resins used in factory equipment across industries.
+{% else %}
+    * *Example:* Procurement management tools, email and office productivity suites, accounting software, payroll services.
+{% endif %}
+{% endblock %}

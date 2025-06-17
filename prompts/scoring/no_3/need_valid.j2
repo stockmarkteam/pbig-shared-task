@@ -1,0 +1,69 @@
+{% extends "scoring/to_b_to_c_base.j2" %}
+
+{% block instruction %}
+### Guiding Principles
+
+Your goal is to assess the commercial viability of an idea by analyzing the problem it solves. Think like a venture capitalist or a product manager. First, identify the core user and the problem. Is it a deep, urgent problem (a "painkiller") or a nice-to-have improvement (a "vitamin")? Second, evaluate the value of your solution from both consumer (toC) and business (toB) perspectives based on the detailed criteria below.
+
+### Step-by-Step Reasoning Guide
+
+1.  **Identify the Core Problem and Primary User**: Who is experiencing the pain point that this idea solves? Is it an individual consumer or a business entity? This initial determination will frame your entire evaluation.
+2.  **Evaluate the toC Need (Always Score This)**: Every idea, whether for consumers or businesses, ultimately addresses a human need.
+    * **Severity**: How critical is this problem for the end user? Is it a minor annoyance or a major life obstacle?
+    * **Frequency**: How often does this problem occur?
+    * **Willingness to Solve**: How actively are people already trying to solve this? Are they using makeshift solutions or actively searching for a product? A high-cost problem that people ignore is not a strong need.
+3.  **Evaluate the toB Value Proposition (Score only if it's a toB product)**: If the primary user is a business, evaluate the return on investment (ROI). A strong toB product offers compelling, measurable benefits.
+    * **Quantitative Returns**: Focus on measurable financial impact. Does it directly increase revenue? Does it decrease operational costs (e.g., labor, materials, energy)? Does it improve efficiency or productivity in a way that can be quantified?
+    * **Qualitative Returns**: Focus on strategic, less tangible benefits. Does it provide a significant competitive advantage? Does it help with regulatory compliance or reduce critical business risks? Does it enable an entirely new business model or unlock access to a new market? Does it significantly improve employee satisfaction or safety?
+
+---
+
+### Scoring Criteria
+
+#### **toC score (Consumer Need Validity)**
+Evaluate the underlying need from the end-consumer's perspective.
+
+* **0: Cannot determine the consumer need / Cannot imagine any consumer-facing product.**
+    * The link to a consumer benefit is non-existent or purely theoretical.
+* **1 (Low): The need is a "vitamin" not a "painkiller."** The cost (e.g., time, money, frustration) of the problem is low. Most people are not actively seeking a solution.
+    * *Example*: A device that slightly organizes your desk drawer.
+* **2 (Medium): The need is a significant inconvenience or a strong "vitamin."** The cost of the problem is noticeable, and a subset of the affected population may actively seek a solution.
+    * *Example*: Finding a high-quality, trustworthy language tutor for an upcoming trip.
+* **3 (High): The need is a "painkiller."** The cost of the problem is high (financially, emotionally, or physically), and people clearly demand a better solution. It addresses a critical, recurring, or high-stakes issue.
+    * *Example*: Managing a chronic health condition like diabetes.
+
+{% if category == "matchem" %}
+* **Example:**
+    * **Score 1 Idea**: A new polymer that makes smartphone cases slightly more resistant to yellowing from UV light. (The underlying need to prevent cosmetic aging of a case is low).
+    * **Score 3 Idea**: A novel, cost-effective, and non-toxic filter material that can remove microplastics from drinking water at the household level. (The underlying need for safe, healthy drinking water is critical and high-cost).
+{% else %}
+* **Example:**
+    * **Score 1 Idea**: An AI that generates novel, quirky social media bios. (The need for a unique bio is a low-cost, low-urgency problem for most people).
+    * **Score 3 Idea**: An AI-powered application that helps individuals with severe speech impediments communicate in real-time. (The need for effective communication is fundamental and addresses a high-cost life obstacle).
+{% endif %}
+
+---
+
+#### **toB score (Business Value Proposition)**
+Assign 0 if the idea is for a toC product. Otherwise, evaluate its value to a business.
+
+* **0 (not_to_b): This is a direct-to-consumer product.** Even if businesses buy it (e.g., office coffee), its primary design and purpose are for individual consumers.
+* **1 (Low): Low quantitative AND low qualitative return.** The product offers a minor improvement or a small cost saving, but it doesn't move the needle on core business metrics. It's a "nice-to-have" for the business.
+* **2 (Medium): High quantitative OR high qualitative return.** The product offers a clear, significant benefit in one dimension.
+    * *Example (High Quant, Low Qual)*: A new type of packaging that reduces shipping costs by 15% but has no other strategic impact.
+    * *Example (Low Quant, High Qual)*: A new internal software that dramatically improves employee onboarding and morale, reducing churn of new hires, but whose direct ROI is hard to calculate.
+* **3 (High): High quantitative AND high qualitative return.** The product is a strategic game-changer, providing both measurable financial returns and a sustainable competitive advantage.
+    * *Example*: A platform that is mission-critical for the business's operations and also provides a significant cost or efficiency advantage.
+
+{% if category == "matchem" %}
+* **Example**
+    * **Idea**: A new, patented catalyst that doubles the production speed of a key ingredient for pharmaceuticals.
+    * **toC Score (3)**: The underlying consumer need for life-saving or life-improving medicines is high.
+    * **toB Score (3)**: The customer is a pharmaceutical company. The **quantitative return** is massive (doubling production means higher revenue and asset efficiency). The **qualitative return** is also high (securing the supply chain for a critical drug, creating a competitive moat against other manufacturers).
+{% else %}
+* **Example**
+    * **Idea**: An AI system that analyzes factory floor sensor data to predict machine failures with 99% accuracy, 48 hours in advance.
+    * **toC Score (2)**: This prevents manufacturing delays, which ultimately benefits consumers through stable supply and potentially lower prices for goods. The need is real but indirect for the consumer, so it's a medium, not a critical daily "painkiller."
+    * **toB Score (3)**: The customer is a large manufacturer. The **quantitative return** is huge (preventing a single day of downtime can save millions). The **qualitative return** is also high (improves operational stability, reduces safety risks from unexpected failures, and provides a major competitive edge in manufacturing efficiency).
+{% endif %}
+{% endblock %}

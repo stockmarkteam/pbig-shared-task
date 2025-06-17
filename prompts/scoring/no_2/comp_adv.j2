@@ -1,0 +1,31 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+Your task is to score **competitive advantage** of the idea.
+
+## Steps
+First, please evaluate the following two criteria (Criteria A and B):
+
+Criterion A: It is difficult to replicate the business idea using the technology.
+
+Examples:
+
+- “Extracting date and time mentions from text” → This can be replaced with commonly available technologies, so it does not satisfy Criterion A.
+- “Achieving high-accuracy recommendations from a small amount of labeled data” → This is difficult to replicate, so it does satisfy Criterion A.
+
+Criterion B: The technology is central to the business idea.
+
+Examples:
+
+- “Improving vehicle fuel efficiency by reducing the weight of audio speakers” → Audio speaker weight is only a small portion of the vehicle’s total weight and is not central to solving the need for fuel efficiency, so it does not satisfy Criterion B.
+- “Improving vehicle fuel efficiency by reducing the weight of the main body” → Since the main body accounts for a large portion of the vehicle’s weight, it is central to solving the need for fuel efficiency, so it does satisfy Criterion B.
+
+## Scores
+After evaluatin criteria A and B, assign a score as follows:
+
+1: Satisfies neither Criterion A nor B
+2: Satisfies Criterion B but not A (core to the idea, but weak technology)
+3: Satisfies Criterion A but not B (strong technology, but not core to the idea)
+4: Satisfies both Criterion A and B
+{% endblock %}
+

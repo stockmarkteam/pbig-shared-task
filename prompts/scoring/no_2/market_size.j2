@@ -1,0 +1,27 @@
+{% extends "scoring/to_b_to_c_base.j2" %}
+
+{% block instruction %}
+Evaluate market size of the idea from the toC and toB perspectives.
+A market size is the potential number of customers who would be interested in the product or service.
+
+## toC score
+
+0: Cannot determine the consumer market size / Cannot imagine a consumer-facing product
+1 (Small): Desired by a niche group; not a daily necessity
+    Example: VR goggles, road bikes
+2 (Medium): Desired by around 40-60% of people or households; not essential but widely used
+    Example: Tablets, coffee makers, backpacks
+3 (Large): Desired by 70-80% or more of people or households; considered a daily necessity
+    Example: Toothbrushes, smartphones
+
+## toB score
+
+0 (not_to_b): Not a toB product
+1 (Small): Niche, but there are companies that would strongly need it
+    Example: Accelerating PoC for automotive parts
+2 (Medium): Many companies are aware of the issue, but adoption depends on budget and internal structure
+    Example: BI tools
+3 (Large): Needed by most companies (over 80%)
+    Example: Procurement management tools
+{% endblock %}
+

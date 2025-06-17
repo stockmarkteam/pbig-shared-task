@@ -1,0 +1,17 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+Your task is to score **Specificity** of the idea.
+
+## Scores
+
+1: Not readable as language (not a coherent sentence or phrase)
+2: Readable as language, but the intention or meaning of the idea is mostly unclear; difficult to imagine any specific product or service
+    Example: “A platform that contributes to carbon neutrality” → the specific product or service is unclear
+3: One or more specific products can be imagined (some ambiguity remains, so multiple interpretations are possible)
+    Example: “A tool to gain user insights from social media” → the intention is understandable, but the term “insights” is ambiguous
+4: A single specific product can be clearly imagined
+    Example: A washing machine that can be controlled by voice
+
+Evaluate CRITICALLY and provide a score based on the definitions above.
+{% endblock %}

@@ -1,0 +1,27 @@
+## Inputs
+
+Read (1) a patent and (2) a business idea using the technology in the patent.
+
+<patent>
+{{ patent.title }}: {% if criteria == "tech_valid" %}{{ patent.description[:7000] }}{% else %}{{ patent.abstract }}{% endif %}
+</patent>
+
+<idea>
+{
+  "title": "{{ idea.title }}",
+  "product_description": "{{ idea.product_description }}",
+  "implementation": "{{ idea.implementation }}",
+  "differentiation": "{{ idea.differentiation }}"
+}
+</idea>
+
+## Task
+{% block instruction %}
+{% endblock %}
+
+## Output format
+Output the judgment in the following format:
+
+```json
+{"reasoning": "<reasoning>", "score": <score>}
+```

@@ -1,0 +1,70 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+Your task is to score the **technological competitive advantage** of a business idea. The score should reflect how defensible the business is based *solely* on its proposed technology.
+
+## Steps
+First, think step-by-step to evaluate the following two criteria (Criteria A and B). Provide a brief rationale for your decision on each criterion before giving the final score.
+
+### Criterion A: The core technology is difficult to replicate.
+
+This means the technology creates a strong, defensible moat. Ask yourself: Could a skilled competitor build a functional equivalent in a few months?
+
+**A technology IS difficult to replicate (Satisfies Criterion A) if:**
+{% if category == "matchem" %}
+- It relies on a novel material composition, structure, or synthesis route that is not publicly documented or is protected by proprietary know-how.
+- The process requires specialized equipment, extreme processing conditions, or tight control over parameters that are hard to reproduce without significant expertise.
+- The technology integrates interdisciplinary methods (e.g., combining AI-based material prediction with custom synthesis and validation workflows) in a way that cannot be easily imitated.
+{% else %}
+- It is powered by a unique, hard-to-acquire dataset that is the primary source of its high performance.
+- It involves a complex, non-obvious system where multiple components work together in a proprietary way.
+{% endif %}
+
+**A technology is NOT difficult to replicate (Does NOT satisfy Criterion A) if:**
+{% if category == "matchem" %}
+- Its core functionality can be achieved primarily by using commercially available materials and standard fabrication methods.
+- It is a straightforward application of well-known material systems, structures, or processes already described in published literature or patents.
+{% else %}
+- Its core functionality can be achieved primarily by using a widely available Large Language Model (LLM) via an API (e.g., from OpenAI, Google, Anthropic).
+- It is a straightforward application of a well-known, open-source model.
+{% endif %}
+
+
+**Examples of technologies that are GENERALLY NOT difficult to replicate (Fail Criterion A):**
+{% if category == "matchem" %}
+- **Standard Polymer Composites:** "A new packaging solution using PLA-based bioplastics." → PLA composites are widely studied and commercially available; formulation tweaks are not a strong moat.
+- **Basic Coating Techniques:** "A corrosion-resistant layer applied using sol-gel." → This is a well-known, published method with many suppliers offering similar solutions.
+- **Open Material Databases + ML:** "A platform that uses public materials data and open-source ML libraries to predict battery performance." → Without proprietary data or synthesis capabilities, the approach is easily replicated.
+{% else %}
+- **Natural Language to SQL:** "A system that converts natural language questions into SQL queries." This is a common application of modern LLMs and is not a strong moat.
+- **General-Purpose Chatbots:** "A chatbot for customer support that answers common questions." The underlying technology is now largely commoditized.
+{% endif %}
+
+### Criterion B: The technology is central to the business idea.
+
+This means the technology is the primary driver of value and the core solution to the customer's most significant problem. It must be the main lever that provides the competitive edge.
+
+**A technology IS central (Satisfies Criterion B) if:**
+- The entire business value proposition is built around the unique capabilities of the technology.
+- The technology directly solves the biggest and most difficult part of the customer's problem.
+
+**Example where technology IS central (Satisfies Criterion B):**
+- \"Improving vehicle fuel efficiency by reducing the weight of the main body.\" → The main body is a huge fraction of the total weight, so innovations here have a massive impact. The technology is the primary lever for the stated goal.
+
+**Example where technology is NOT central (Does NOT satisfy Criterion B):**
+- \"Improving vehicle fuel efficiency by reducing the weight of the audio speakers.\" → The speakers are a tiny fraction of the vehicle's weight. Even a revolutionary speaker technology would have a negligible impact on the overall goal of fuel efficiency.
+
+## Scoring Process
+
+1.  **Analyze Criterion A:** Based on the definitions above, does the idea satisfy Criterion A? Write down your reasoning.
+2.  **Analyze Criterion B:** Based on the definitions above, does the idea satisfy Criterion B? Write down your reasoning.
+3.  **Assign Score:** Based on your analysis, assign one of the following scores.
+
+## Scores
+After evaluating criteria A and B, assign a score as follows:
+
+1: Satisfies neither Criterion A nor B
+2: Satisfies Criterion B but not A (The idea addresses a core problem, but the technology is easy to copy)
+3: Satisfies Criterion A but not B (The technology is strong and unique, but it's not applied to the most critical part of the business problem)
+4: Satisfies both Criterion A and B (A strong, defensible technology that is core to the business value)
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "scoring/to_b_to_c_base.j2" %}
+
+{% block instruction %}
+Evaluate need validity of the idea from the toC and toB perspectives.
+
+## toC score
+
+0: Cannot determine the consumer need / Cannot imagine any consumer-facing product
+1 (Low): The need exists, but the qualitative/quantitative cost is low, so most people do not seek a solution
+    Example: Earphone cables getting tangled
+2: (Medium): The need exists and has a certain qualitative/quantitative cost, but it is not critical, so some people may not seek a solution
+    Example: Shoulder stiffness from PC work
+3 (High): The need exists and the qualitative/quantitative cost is high; a solution is clearly demanded
+    Example: Risk of falls for elderly people living at home
+
+## toB score
+
+0 (not_to_b): This is not a toB (business-oriented) product
+1 (Low): Both qualitative and quantitative returns are small
+2 (Medium): Either the quantitative return (e.g., measurable monetary benefit) or the qualitative return (e.g., value essential for company growth) is large
+    Examples:
+        Quantitative return: Cost reduction
+        Qualitative return: Knowledge transfer
+3 (High): Both quantitative and qualitative returns are large
+{% endblock %}
+

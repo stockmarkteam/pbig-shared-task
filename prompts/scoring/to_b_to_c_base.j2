@@ -1,0 +1,42 @@
+## Inputs
+Read (1) a patent and (2) a business idea using the technology in the patent.
+
+<patent>
+{{ patent.title }}: {% if criteria == "tech_valid" %}{{ patent.description[:7000] }}{% else %}{{ patent.abstract }}{% endif %}
+</patent>
+
+<idea>
+{
+  "title": "{{ idea.title }}",
+  "product_description": "{{ idea.product_description }}",
+  "implementation": "{{ idea.implementation }}",
+  "differentiation": "{{ idea.differentiation }}"
+}
+</idea>
+
+## Task
+Score ideas both (1) as a toC product / service (2) as a toB product / service.
+In this task, we define a toB (business-to-business) product or service as one that is not intended for consumers.
+For example, a monitor can be used by both consumers and business organizations.
+In such cases, we do not consider it a toB product;
+it is treated as a toC (consumer) product.
+We expect toB products to be things like components for large industrial machine or consulting services.
+
+Note
+**Judge the toC score even if the idea is for a toB product**
+In this case, evaluate the underlying toC need that the toB product targets.
+For example, if the product is manufacturing equipment for smartphones, evaluate the need for smartphones.
+
+On the other hand, don't evaluate the toB score for toC products.
+Assign 0 for toB score if the idea is a toC product.
+
+## Criteria
+{% block instruction %}
+{% endblock %}
+
+## Output format
+Output the judgment in the following format:
+
+```json
+{"reasoning": "<reasoning>", "to_c_score": <score>, "to_b_score": <score>}
+```

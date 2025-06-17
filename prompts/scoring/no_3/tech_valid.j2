@@ -1,0 +1,48 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+You are a seasoned CTO and patent expert conducting technical due diligence. Your task is to critically evaluate and score the **Technical Validity** of a business idea. Your evaluation hinges on how realistically a **specific, core patented technology** enables the proposed product, not just on the general feasibility of the idea.
+
+### Mental Workflow
+
+1.  **Identify the Core Patented Technology:** First, identify the *single, core, presumably patented technology* at the heart of the business idea. This is a specific algorithm or method, not a broad concept like "AI" or "NLP." If the description mentions a specific patent (e.g., "patented vertical/confidence routing"), focus on that. If not, infer the most specific, novel, and central process described.
+{% if category == "matchem" %}
+(e.g., for a "new coating method for corrosion-resistant alloys," the core tech is the specific *coating formulation or deposition process*, not general corrosion resistance)
+{% else %}
+(e.g., for an "AI document search that understands units," the core tech is the *method for understanding units*, not the search itself)
+{% endif %}
+
+2.  **Assess the Gap to Production:** Critically assess the gap between this core technology and a complete, production-level product. Consider all other necessary components:
+{% if category == "matchem" %}
+manufacturing scalability, long-term material stability, compatibility with existing industrial processes, regulatory compliance (e.g., REACH, RoHS), and reproducibility at batch scale
+{% else %}
+data integration, enterprise-grade security, scalability, UI/UX, handling of edge cases, etc.
+{% endif %}
+
+3.  **Assign Score:** Your score must reflect how much of the final product is *directly* provided by the core patented technology versus how much additional, complex engineering is required. Be skeptical and avoid high scores for ideas describing large, multi-feature platforms where the patent is only one small piece.
+
+## Scores
+
+**1: The patented technology does not seem applicable or suitable for the proposed use**
+* **Reasoning:** Award this score if the business idea is very generic
+{% if category == "matchem" %}
+(e.g., "a material for sustainable electronics" without specifying what the material is, how it's made, or what technical barrier it solves)
+{% else %}
+(e.g., "AI for customer support")
+{% endif %}
+or describes a standard application of well-known technologies. The connection between a plausible core patent and the overall business outcome is weak or insignificant. The product's success depends almost entirely on implementation, integration, and features outside the scope of a single core patent.
+
+**2: Although it includes challenging technical development elements, it is possible to create a prototype using the patented technology**
+* **Reasoning:** Award this score when the patented technology is a clear and essential enabler for a core feature, but a significant amount of other complex engineering is required to build even a minimal viable product (MVP). The idea describes a platform or a complex workflow where the patent solves one key problem, but many other hard technical problems remain
+{% if category == "matchem" %}
+(e.g., using a new catalyst material in a chemical process that still requires extensive reactor design, purification, and scale-up validation)
+{% else %}
+(e.g., building a full enterprise chatbot platform around a patented routing algorithm).
+{% endif %}
+
+**3: A prototype could be built using the patented technology**
+* **Reasoning:** Award this score when the patented technology is the central component, and building a prototype to demonstrate the core value proposition seems straightforward. While more engineering is needed for a production system, the main technical hurdle for a *prototype* is directly addressed by the patent. The scope of the idea is narrow enough to be prototyped effectively around the core technology.
+
+**4: The patented technology can be directly applied to a production-level product**
+* **Reasoning:** This score is rare. Award it *only* when the patented technology is so comprehensive that it constitutes the vast majority of the technical work. The remaining effort should be standard integration, simple UI development, or basic deployment with minimal novel technical challenges. 
+{% endblock %}

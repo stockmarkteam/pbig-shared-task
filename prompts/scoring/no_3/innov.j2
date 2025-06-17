@@ -1,0 +1,80 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+Your task is to critically evaluate and score the **Innovativeness** of the provided business idea. Your analysis must be skeptical and grounded in the current state of technology and business.
+
+## Core Principle: Look Past the Hype
+
+Many descriptions use impressive jargon and marketing language (\"domain-adaptive,\" \"non-ontological,\" \"dynamic confidence routing\") to describe what are, fundamentally, common applications. Your primary job is to see through this hype. Focus on the **what** (the core problem being solved and the application's function) rather than the **how** (the specific technical implementation details). An old idea wrapped in new buzzwords is still an old idea.
+
+## Step-by-Step Evaluation Process
+
+1.  **Deconstruct the Idea:** First, identify the core user, the core problem, and the fundamental function of the proposed solution. Ignore the marketing language for a moment.
+2.  **Perform a Reality Check:** Compare the core idea against the list of **Commonplace & Low-Novelty Applications** below. Is the idea fundamentally one of these?
+3.  **Assess the \"Twist\":** If the idea is a variation of a common application, evaluate the novelty of its \"twist\" or specific angle. Is it a minor feature enhancement or a genuinely new capability or application to a truly novel domain?
+4.  **Assign a Score:** Use the scoring rubric below, grounding your score in your analysis.
+
+---
+
+## Commonplace & Low-Novelty Applications (Generally a Score of 1)
+
+The following are well-established, often commoditized, applications of AI. Ideas that fall into these categories should receive a score of 1, even if they are described with complex jargon or target a large market.
+
+{% if category == "matchem" %}
+* **Standard Coating Improvements:** Claims of slightly better anti-corrosion, anti-scratch, or hydrophobic coatings using known chemistries.
+* **Generic Catalyst Substitutions:** Using more abundant or cheaper alternatives to rare metals without introducing fundamentally new catalytic mechanisms.
+* **Simple Material Composites:** Adding a filler or second phase to improve mechanical or thermal properties without novel interface or structure design.
+* **Traditional Battery Tweaks:** Incremental changes in electrolytes, separators, or current collectors that don't change the battery chemistry or structure in a meaningful way.
+* **Waste Material Reuse:** Repurposing industrial waste (e.g., fly ash, slag, etc.) into cements, ceramics, or composites without a novel processing or binding mechanism.
+{% else %}
+* **Standard Chatbots:** For uses like enterprise IT helpdesks, customer support, FAQ automation, or appointment booking.
+* **Natural Language Interface to Database (NLIDB):** Any tool that allows users to query a database using natural language (e.g., \"conversational analytics,\" \"self-service BI\").
+* **Enhanced Search:** AI-powered search for e-commerce, enterprise documents, or general web search.
+* **Basic Sentiment Analysis:** Tools for brand reputation monitoring based on the sentiment of reviews or social media posts.
+* **Log/Error Analysis:** Using NLP to diagnose problems from software logs.
+* **AR for Maintenance:** Using Augmented Reality to overlay instructions or identify parts for technicians.
+{% endif %}
+
+---
+
+## Scores
+
+**1: A well-known application; lacks novelty.**
+* The idea is fundamentally one of the commonplace applications listed above.
+* The \"twist\" on a known idea is minor, trivial, or just a marketing angle.
+{% if category == "matchem" %}
+* *Example ideas at this level:* "A superhydrophobic coating for marine equipment using fluorinated silanes," "Replacing platinum with nickel in a standard hydrogen evolution catalyst," "Adding graphene to concrete for enhanced strength."
+{% else %}
+* *Example ideas at this level:* \"An AI chatbot for enterprise IT helpdesks,\" \"A platform to ask questions of your data in plain English,\" \"An AR app to guide technicians in servicing equipment.\"
+{% endif %}
+
+**2: Known use case of similar technology, but with a significant, non-trivial twist.**
+* Applies a known technology to a domain where it is not yet common, or adds a significant new capability to a common application that changes its core function.
+{% if category == "matchem" %}
+* *Example ideas at this level:* "A bio-derived polymer electrolyte with tunable ion conductivity for flexible batteries," "A dual-function cement that also captures and stores CO₂ during curing."
+{% else %}
+* *Example ideas at this level:* \"An AI that generates auditable explanations for every decision, specifically for financial compliance,\" \"An AI that converts how-to videos into automated, executable IT workflows,\" \"A platform to automatically generate complex, multilingual training datasets for NLP models.\"
+{% endif %}
+
+**3: A use case I hadn't thought of, but not particularly exciting.**
+* A genuinely new application of AI, but its impact seems niche or incremental.
+* It solves a real problem in a novel way, but isn't a \"game-changer.\"
+{% if category == "matchem" %}
+* *Example ideas at this level:* "A heat-responsive coating that shifts color and emissivity to passively regulate building temperature," "A shape-memory polymer composite for reconfigurable aerospace components."
+{% else %}
+* *Example ideas at this level:* \"An AI that uses database tables to systematically fact-check and correct statements in a document,\" \"An adaptive conversational analytics tool that learns and evolves its query capabilities based on user interaction patterns.\"
+{% endif %}
+
+**4: Surprising and interesting: the idea is not widely known, but it is a plausible application of the technology.**
+* Proposes a new product category or capability that does not appear to exist today.
+* The application is clever and addresses a complex problem in a novel way.
+{% if category == "matchem" %}
+* *Example ideas at this level:* "A self-healing metal-organic framework that maintains gas separation performance over time," "A programmable polymer network that responds to environmental DNA for contamination sensing."
+{% else %}
+* *Example ideas at this level:* \"A language-agnostic AI that can compare regulatory documents across different languages to detect risks and inconsistencies.\"
+{% endif %}
+
+**5: Super surprising and novel; has a strong element of originality and is likely to be impactful.**
+* A paradigm-shifting idea that could create a new market or fundamentally change an industry.
+* The application of technology is highly creative and non-obvious.
+{% endblock %}

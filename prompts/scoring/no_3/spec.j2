@@ -1,0 +1,65 @@
+{% extends "scoring/base.j2" %}
+
+{% block instruction %}
+Your task is to CRITICALLY evaluate and score the **Specificity** of a business idea. You must distinguish between a specific product and a vague capability.
+
+## Core Principle: Is it a Product or a Capability?
+
+Many ideas describe a *capability*, a *technology*, or a *method* rather than a concrete *product*. An idea is only specific if you can clearly picture the product that a user would interact with.
+
+* **Low Specificity (Score 2):** Describes a technology, an engine, a framework, a library, or a platform without a clear form. It answers *what it does* but not *what it is*.
+{% if category == "matchem" %}
+    * *Example*: "A novel catalyst design for hydrogen storage." → Is this a powder, a membrane, or a coating? The specific product is unclear.
+{% else %}
+    * *Example*: "An engine for real-time on-device NLP." (What is the product? An SDK? A hardware chip? It's unclear.)
+{% endif %}
+* **High Specificity (Score 4):** Describes a concrete product. You can imagine its form factor and how a user interacts with it.
+{% if category == "matchem" %}
+    * *Example*: "A self-healing polymer film for lithium-ion batteries." → The product is a specific film with a defined use case.
+{% else %}
+    * *Example*: \"A mobile app that translates spoken language in real-time.\" (The product is a mobile app. The form is clear.)
+{% endif %}
+
+**Critically assess if the idea is just a list of features or a well-defined product.**
+
+## Scoring Rubric
+
+**1: Not readable as language.**
+* The text is not a coherent sentence or phrase.
+
+**2: Readable, but the specific product is unclear.**
+* The intention is mostly unclear, or it describes an abstract capability, technology, or system rather than a product. You cannot picture a concrete product.
+* **Red Flags:** Watch for ambiguous terms like \"platform,\" \"engine,\" \"suite,\" \"framework,\" \"system,\" or \"method\" when the description does not clarify what the user actually sees or uses (e.g., a web dashboard, a mobile app, a command-line tool).
+* An idea belongs here if it is filled with technical jargon about its capabilities but you still can't tell what the product *is*.
+{% if category == "matchem" %}
+* *Example*: "A platform that advances carbon capture using metal-organic frameworks." → The specific product is unclear. Is it a reactor module? A filtration material? A coating?
+* *Example*: "NanoPhase-Sil: A high-surface-area silica-based additive for better thermal conductivity in composites." → This describes a material property and potential function, but not the product form (powder? film? filler for injection molding?). It's a vague capability.
+{% else %}
+* *Example*: “A platform that contributes to carbon neutrality.” → The specific product is unclear.
+* *Example*: “LiteNLP Edge Pro: A plug-and-play NLP engine for on-device processing.” → This describes a capability (an “engine”). It is not a specific product. Is it an SDK? A library? A piece of hardware? It is impossible to tell.
+{% endif %}
+
+**3: One or more specific products can be imagined, but ambiguity remains.**
+* The user, problem, and value proposition are generally clear, but the product's form factor is ambiguous, leading to multiple possible interpretations.
+* You can imagine what it does, but you're not sure if it's a web app, an API, a desktop program, or a browser plugin.
+{% if category == "matchem" %}
+* *Example*: "A material that removes VOCs from the air." → The function is clear, but the product form is not. Is it a coating for HVAC filters? A spray? A ceramic block?
+* *Example*: "A thermal interface material for EV batteries that self-heals under pressure." → This is more specific, but the product form could still be a pad, a paste, or a film—some ambiguity remains.
+{% else %}
+* *Example*: “A tool to gain user insights from social media.” → The intention is clear, but "insights" is ambiguous, and the tool could be a dashboard, a report generator, or an API. Multiple interpretations are possible.
+* *Example*: “An AI-powered tool for aerospace engineers that extracts answers from technical manuals, understanding unfamiliar units.” → The user and problem are specific. However, the “tool” is ambiguous. Is it a standalone search engine, a plugin for a PDF reader, or an API? Ambiguity remains.
+{% endif %}
+
+**4: A single, specific product can be clearly imagined.**
+* The description presents a clear and unambiguous picture of a single product. You know its form factor and high-level function.
+* There is little to no room for interpretation about what the product *is*.
+{% if category == "matchem" %}
+* *Example*: "A self-healing polymer film applied as a protective coating for lithium-ion battery casings." → The product is clearly a coating with a defined form factor and use case.
+* *Example*: "A household air purifier that integrates a replaceable zeolite cartridge for ammonia removal." → This is a concrete product: a physical appliance with a replaceable component.
+{% else %}
+* *Example*: “A voice-controlled washing machine.” → The product is clearly a physical washing machine with a specific interface (voice).
+* *Example*: “An automated web application that takes a company's website URL and generates a downloadable PDF report of its privacy policy vulnerabilities.” → We can clearly picture this product: a web app with an input field and a download button.
+{% endif %}
+
+Evaluate CRITICALLY based on these detailed definitions. Do not be fooled by technical jargon or long feature lists. Focus on the clarity of the *product* itself.
+{% endblock %}
