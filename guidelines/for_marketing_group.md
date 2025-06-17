@@ -14,7 +14,7 @@ Please evaluate ideas in the following order. The scoring criteria for each aspe
 
 ### Specificity
 
-Refer to [for_tech_group.md](guidelines/for_tech_group.md#specificity) for the definition of Specificity.
+Refer to [for_tech_group.md](for_tech_group.md#specificity-4-point-scale) for the definition of Specificity.
 
 ### Need validity
 
@@ -64,7 +64,7 @@ If it's a toB product, similar to Need validity, evaluate the market size of the
   * *Examples: Toothbrushes, smartphones.*
 
 **(Market size) toB**
-Please evaluate the toB perspective based on the following viewpoints. If it is a toC product, select "0 (not_to_b)".# 
+Please evaluate the toB perspective based on the following viewpoints. If it is a toC product, select "0 (not_to_b)".
 
 * **0 (not_to_b) (Not toB):** Not a toB product.
 * **0 (cannot_judge):** It is a toB product, but the size cannot be judged.
